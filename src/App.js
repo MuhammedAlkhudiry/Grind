@@ -9,6 +9,7 @@ export default function App() {
     useEffect(() => {
         (async () => {
             try {
+                console.log(await User.isFirstTimeLaunch());
                 if (await User.isFirstTimeLaunch()) {
                     await User.saveInitialSettings();
                 } else {

@@ -10,7 +10,6 @@ import LevelProgressBar from '../../components/LevelProgressBar';
 
 export default function HomeScreen() {
     const [todayWork, setTodayWork] = useState(0);
-
     return (
         <View style={{flex: 1, flexDirection: 'column', backgroundColor: Colors.light_tint}}>
             <View style={{height: '50%'}}>

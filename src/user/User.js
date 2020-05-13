@@ -1,19 +1,20 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import Settings from './Settings';
 import Project from './Project';
+import Colors from '../helpers/Colors';
 
 // TODO: dev-line
-// AsyncStorage.clear();
+AsyncStorage.clear();
 export default class User {
-    static currentLevel: Number;
-    static projects: Array;
-    static currentProject: Project;
+    static currentLevel = 0;
+    static projects = [];
+    static currentProject = new Project();
     static stats: Object;
     static isSettingsChanged = false;
     static settings = new Settings();
 
     static async updateSetting(settingName, newSetting) {
-        this.isSettingsChanged = true;
+        User.isSettingsChanged = true;
         User.settings[settingName] = newSetting;
         await User.storeSettingInStorage(settingName, newSetting);
     }
@@ -25,6 +26,7 @@ export default class User {
 
     //TODO make async to be from load from storage
     static getData(key) {
+        console.log(User.projects, key);
         try {
             // if non-string parse it
             return JSON.parse(User.settings[key]);
@@ -84,8 +86,7 @@ export default class User {
 
     static async loadSettings() {
         User.projects = JSON.parse(await AsyncStorage.getItem('projects')) || [];
-        User.currentProject = JSON.parse(await AsyncStorage.getItem('current_project')) || 'none';
-
+        User.currentProject = JSON.parse(await AsyncStorage.getItem('current_project')) || new Project();
         await User.setSetting('first_day', await AsyncStorage.getItem('first_day'));
         await User.setSetting('default_work_duration', await AsyncStorage.getItem('default_work_duration'));
         await User.setSetting('short_break', await AsyncStorage.getItem('short_break'));
