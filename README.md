@@ -3,8 +3,8 @@
 
 # Screenshots
 
-![](screenshots/2020-05-13 161032.jpg)
+![](screenshots/161032.jpg)
 
 ---
 
-![](screenshots/2020-05-13 161128.jpg
+![](screenshots/161128.jpg
